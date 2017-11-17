@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+if(localStorage){
+	$(document).ready(function(){
+
+		function guid() {
+			function s4() {
+			  return Math.floor((1 + Math.random()) * 0x10000)
+				.toString(16).toUpperCase()
+				.substring(1);
+			}
+			return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+			  s4() + '-' + s4() + s4() + s4();
+		  }
+
+		$(".save").click(function(){
+					function input(data){
+						this.id = data[0];
+						this.name = data[1];
+						this.values = data[2];
+					}
+					
+					var data = [guid(), $("#name").val(), {valueOne: $("#first").val(), valueTwo: $("#second").val(), valueThree: $("#third").val()}]
+					input = new input(data);
+
+					localStorage.setItem('input', JSON.stringify(input));
+					input = localStorage.getItem('input');
+					input = JSON.parse(input);
+
+			alert("Your data has been saved.");
+		});
+		$(".access").click(function(){
+            console.log(JSON.parse( localStorage.getItem( 'input' )));
+            alert(localStorage.input);
+		});
+	});
+} else{
+    alert("Sorry, your browser do not support local storage.");
+}
+</script>
+</head>
+<body>
+    <form>
+		<input type="text" placeholder="Enter a name" id="name"><br/><br/>
+		<input type="text" placeholder="Enter first value" id="first"><br/><br/>
+		<input type="text" placeholder="Enter second value" id="second"><br/><br/>
+		<input type="text" placeholder="Enter third value" id="third"><br/><br/></center>
+        <button type="button" class="save">Save Data</button>
+		<button type="button" class="access">Get Data</button>
+		<a href="Put your own local storage input page path here">Go To 2nd Page</a>
+    </form>
+</body>
+</html>            

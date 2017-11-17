@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+if(localStorage){
+	$(document).ready(function(){
+		$(".display").click(function(){
+            var arrayInformation = JSON.parse(localStorage.getItem('input'));
+            document.getElementById("output").innerHTML = 
+            "ID: " + arrayInformation.id + 
+            "</br>Name: " + arrayInformation.name + 
+            "</br>Value One: " + arrayInformation.values.valueOne + 
+            "</br>Value Two: " + arrayInformation.values.valueTwo + 
+            "</br>Value Three: " + arrayInformation.values.valueThree;
+		});
+	});
+} else{
+    alert("Sorry, your browser do not support local storage.");
+}
+</script>
+</head>
+<body>
+    <form>
+        <button type="button" class="display">Display Data</button>
+        <p id="output"></p>
+		<a href="Put your own local storage input page path here">Go To 1st Page</a>
+    </form>
+</body>
+</html>     
